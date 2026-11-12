@@ -1,0 +1,468 @@
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+:root {
+    --bg: #0a0a0b;
+    --surface: #121214;
+    --surface-hover: #17171a;
+    --surface-input: #1a1a1d;
+    --border: #26262b;
+    --border-strong: #34343a;
+    --text: #f5f5f7;
+    --text-muted: #9ca3af;
+    --text-faint: #6b7280;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-soft: rgba(59, 130, 246, 0.12);
+    --accent-text: #93c5fd;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    --font: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+/* =========================================================
+   RESET + BASE (commun à toutes les pages)
+   ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background:
+        radial-gradient(circle at 15% 0%, rgba(59, 130, 246, 0.10), transparent 40%),
+        radial-gradient(circle at 85% 100%, rgba(139, 92, 246, 0.08), transparent 40%),
+        var(--bg);
+    background-attachment: fixed;
+    font-family: var(--font);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   FORMULAIRES (connexion.php / inscription.php)
+   ========================================================= */
+form {
+    width: 100%;
+    max-width: 440px;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+input {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--surface-input);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    outline: none;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+    color: var(--text-faint);
+}
+
+input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+input[type="date"] {
+    color-scheme: dark;
+    cursor: pointer;
+}
+
+button {
+    padding: 14px;
+    margin-top: 8px;
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background: var(--accent-hover);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Message PHP sous le formulaire */
+body > p {
+    margin-top: 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* =========================================================
+   PROFIL (Profile.php)
+   ========================================================= */
+.profile-container {
+    width: 100%;
+    max-width: 650px;
+}
+
+.profile-card {
+    background: var(--surface);
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile-header h2 {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.profile-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.role-badge {
+    background: var(--accent-soft);
+    color: var(--accent-text);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.profile-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.info-item label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.info-item p {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* =========================================================
+   LISTE DES UTILISATEURS (Acceuil.php)
+   ========================================================= */
+.users-container {
+    width: 100%;
+    max-width: 1150px;
+    align-self: center;
+}
+
+/* Le contenu de cette page commence en haut, pas centré verticalement */
+body:has(.users-container) {
+    justify-content: flex-start;
+}
+
+/* En-tête */
+.users-container h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+}
+
+.users-container h1::before {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 4px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent), #8b5cf6);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Grille de cartes */
+.users-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+}
+
+/* Carte utilisateur */
+.user-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* Liseré de couleur en haut de la carte */
+.user-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #8b5cf6);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-3px);
+    background: var(--surface-hover);
+    border-color: rgba(59, 130, 246, 0.45);
+    box-shadow: var(--shadow), 0 0 0 1px rgba(59, 130, 246, 0.15);
+}
+
+.user-card:hover::before {
+    opacity: 1;
+}
+
+/* Ligne du haut : avatar + identifiant */
+.user-id {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--accent-text);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+/* Avatar générique (dessiné en CSS) */
+.user-id::before {
+    content: "";
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.9) 0 7px, transparent 7.5px),
+        radial-gradient(ellipse 15px 11px at 50% 100%, rgba(255, 255, 255, 0.9) 0 100%, transparent 101%),
+        linear-gradient(135deg, var(--accent), #8b5cf6);
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+    flex-shrink: 0;
+}
+
+/* Infos */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.user-card .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.user-card .info-item + .info-item {
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.info-label {
+    color: var(--text-faint);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.user-info p {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+/* L'email en couleur d'accent */
+.user-card .info-item:last-child p {
+    color: var(--accent-text);
+    font-size: 14px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 500px) {
+    body {
+        padding: 24px 16px;
+    }
+
+    form {
+        padding: 26px 20px;
+    }
+
+    .profile-card {
+        padding: 24px 20px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .users-container h1 {
+        font-size: 26px;
+    }
+
+    .users-list {
+        grid-template-columns: 1fr;
+    }
+
+    .user-card {
+        padding: 18px;
+    }
+}
+
+/* =========================================================
+   LISTE DES AGENTS (AgentsArchieve.php)
+   Les 5 <div class="agent-id"> de chaque agent se suivent :
+   on les met en grille de 5 colonnes = 1 ligne par agent.
+   ========================================================= */
+body:has(.agents-list) {
+    justify-content: flex-start;
+}
+
+.agents-list {
+    width: 100%;
+    max-width: 1150px;
+    display: grid;
+    grid-template-columns: 90px 1.2fr 1fr 1fr 2fr;
+    row-gap: 12px;
+}
+
+.agents-list > .agent-id {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    padding: 16px 18px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+/* Petit label au-dessus de chaque valeur */
+.agents-list > .agent-id::before {
+    color: var(--text-faint);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.agents-list > .agent-id:nth-child(5n + 1)::before { content: "ID"; }
+.agents-list > .agent-id:nth-child(5n + 2)::before { content: "Nom"; }
+.agents-list > .agent-id:nth-child(5n + 3)::before { content: "Date de naissance"; }
+.agents-list > .agent-id:nth-child(5n + 4)::before { content: "Archétype"; }
+.agents-list > .agent-id:nth-child(5n + 5)::before { content: "Capacités"; }
+
+/* Début de ligne : coins arrondis + liseré bleu */
+.agents-list > .agent-id:nth-child(5n + 1) {
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius) 0 0 var(--radius);
+    color: var(--accent-text);
+    font-weight: 600;
+}
+
+/* Fin de ligne */
+.agents-list > .agent-id:nth-child(5n + 5) {
+    border-right: 1px solid var(--border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Nom de l'agent mis en avant */
+.agents-list > .agent-id:nth-child(5n + 2) {
+    font-weight: 600;
+}
+
+/* Tablette / mobile : une carte par agent */
+@media (max-width: 800px) {
+    .agents-list {
+        grid-template-columns: 1fr;
+        row-gap: 0;
+    }
+
+    .agents-list > .agent-id {
+        border: 1px solid var(--border);
+        border-top: none;
+        border-bottom: none;
+        border-radius: 0;
+    }
+
+    .agents-list > .agent-id:nth-child(5n + 1) {
+        margin-top: 16px;
+        border-top: 1px solid var(--border);
+        border-left: 1px solid var(--border);
+        border-radius: var(--radius) var(--radius) 0 0;
+        box-shadow: inset 0 3px 0 var(--accent);
+    }
+
+    .agents-list > .agent-id:nth-child(5n + 5) {
+        border-bottom: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+        border-radius: 0 0 var(--radius) var(--radius);
+    }
+}
